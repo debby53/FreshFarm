@@ -88,6 +88,7 @@ public class ProductService {
                                               ProductStatus status) {
         try {
             boolean onlyAvailable = Boolean.TRUE.equals(availableOnly);
+            String statusStr = status != null ? status.name() : null;
             List<Product> products = productRepository.searchProducts(
                             sanitize(keyword),
                             sanitize(category),
@@ -95,7 +96,7 @@ public class ProductService {
                             maxPrice,
                             sanitize(location),
                             onlyAvailable,
-                            status);
+                            statusStr);
             
             // Log for debugging
             System.out.println("Found " + products.size() + " products with filters: keyword=" + keyword + 
